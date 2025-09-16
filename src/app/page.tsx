@@ -91,39 +91,18 @@ export default function PortfolioForm() {
       <h1 className="text-3xl font-bold text-center mb-6">เพิ่ม Portfolio</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <input
-            name="firstName"
-            placeholder="ชื่อ"
-            onChange={handleChange}
-            className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-blue-400"
-          />
-          <input
-            name="lastName"
-            placeholder="นามสกุล"
-            onChange={handleChange}
-            className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-blue-400"
-          />
+          <input name="firstName" placeholder="ชื่อ" onChange={handleChange} className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
+          <input name="lastName" placeholder="นามสกุล" onChange={handleChange} className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
         </div>
         <input name="address" placeholder="ที่อยู่" onChange={handleChange} className="w-full border p-2 rounded-lg" />
         <input name="phone" placeholder="เบอร์โทร" onChange={handleChange} className="w-full border p-2 rounded-lg" />
         <input name="school" placeholder="โรงเรียน" onChange={handleChange} className="w-full border p-2 rounded-lg" />
         <input name="gpa" placeholder="GPA" onChange={handleChange} className="w-full border p-2 rounded-lg" />
         <input name="talent" placeholder="ความสามารถพิเศษ" onChange={handleChange} className="w-full border p-2 rounded-lg" />
-        <textarea
-          name="reason"
-          placeholder="เหตุผลในการสมัคร"
-          onChange={handleChange}
-          className="w-full border p-2 rounded-lg"
-          rows={3}
-        />
+        <textarea name="reason" placeholder="เหตุผลในการสมัคร" onChange={handleChange} className="w-full border p-2 rounded-lg" rows={3} />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <input name="major" placeholder="สาขาที่เลือก" onChange={handleChange} className="w-full border p-2 rounded-lg" />
-          <input
-            name="university"
-            placeholder="มหาวิทยาลัย"
-            onChange={handleChange}
-            className="w-full border p-2 rounded-lg"
-          />
+          <input name="university" placeholder="มหาวิทยาลัย" onChange={handleChange} className="w-full border p-2 rounded-lg" />
         </div>
 
         {/* Upload Photo */}
@@ -161,10 +140,7 @@ export default function PortfolioForm() {
           </div>
         )}
 
-        <button
-          type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition"
-        >
+        <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition">
           บันทึก
         </button>
       </form>
