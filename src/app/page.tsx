@@ -18,7 +18,7 @@ type Student = {
   awards?: string[];
 };
 
-let studentStore: Student[] = [];
+const studentStore: Student[] = [];
 
 export default function PortfolioForm() {
   const router = useRouter();
@@ -76,8 +76,11 @@ export default function PortfolioForm() {
       alert("กรุณากรอกข้อมูลให้ครบ");
       return;
     }
-    form.id = studentStore.length + 1;
-    studentStore.push(form);
+
+    // สร้าง object ใหม่แทนแก้ form.id โดยตรง
+    const newStudent = { ...form, id: studentStore.length + 1 };
+    studentStore.push(newStudent);
+
     router.push("/students");
   };
 
