@@ -1,52 +1,46 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
-import { studentStore } from "../page";
+import { getStudents } from "../store/studentStore";
 
-export default function StudentList() {
+export default function StudentsPage() {
+  const students = getStudents();
+
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-2xl mt-10">
+    <div className="max-w-4xl mx-auto p-6">
       <h1 className="text-3xl font-bold text-center mb-6">รายชื่อนักเรียน</h1>
-
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse border border-gray-300">
-          <thead className="bg-gray-200">
-            <tr>
-              <th className="border p-3 text-left">ID</th>
-              <th className="border p-3 text-left">ชื่อ-นามสกุล</th>
-              <th className="border p-3 text-left">GPA</th>
-              <th className="border p-3 text-center">รายละเอียด</th>
-            </tr>
-          </thead>
-          <tbody>
-            {studentStore.length === 0 ? (
-              <tr>
-                <td colSpan={4} className="text-center p-4">
-                  ยังไม่มีข้อมูล
-                </td>
-              </tr>
-            ) : (
-              studentStore.map((s, i) => (
-                <tr
-                  key={s.id}
-                  className={i % 2 === 0 ? "bg-white" : "bg-gray-50 hover:bg-gray-100"}
-                >
-                  <td className="border p-3">{s.id}</td>
-                  <td className="border p-3">{s.firstName} {s.lastName}</td>
-                  <td className="border p-3">{s.gpa}</td>
-                  <td className="border p-3 text-center">
-                    <Link
-                      href={`/students/${s.id}`}
-                      className="text-blue-600 hover:underline"
-                    >
-                      ดูรายละเอียด
-                    </Link>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+      {students.length === 0 ? (
+        <p className="text-center text-gray-500">ยังไม่มีนักเรียนในระบบ</p>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {students.map((student) => (
+            <Link key={student.id} href={`/students/${student.id}`}>
+              <div className="border p-4 rounded-lg hover:shadow-lg transition cursor-pointer flex items-center gap-4">
+                {student.photo ? (
+                  <Image
+                    loader={({ src }) => src}
+                    src={student.photo}
+                    alt={student.firstName}
+                    width={64}
+                    height={64}
+                    className="h-16 w-16 object-cover rounded-full"
+                  />
+                ) : (
+                  <div className="h-16 w-16 bg-gray-200 rounded-full flex items-center justify-center">
+                    ?
+                  </div>
+                )}
+                <div>
+                  <p className="font-semibold">
+                    {student.firstName} {student.lastName}
+                  </p>
+                  <p className="text-gray-500 text-sm">{student.school}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

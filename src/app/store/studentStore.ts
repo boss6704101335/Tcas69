@@ -1,6 +1,4 @@
-"use client";
-
-
+// store/studentStore.ts
 export type Student = {
   id: number;
   firstName: string;
@@ -20,13 +18,15 @@ export type Student = {
 // store ตัวกลาง
 const studentStore: Student[] = [];
 
-// ฟังก์ชันสำหรับจัดการ store
-export const addStudent = (student: Student) => {
-  student.id = studentStore.length + 1;
-  studentStore.push(student);
+// เพิ่มนักเรียน
+export const addStudent = (student: Omit<Student, "id">) => {
+  const newStudent: Student = { ...student, id: studentStore.length + 1 };
+  studentStore.push(newStudent);
 };
 
+// ดึงนักเรียนทั้งหมด
 export const getStudents = () => studentStore;
 
+// ดึงนักเรียนตาม id
 export const getStudentById = (id: number) =>
   studentStore.find((s) => s.id === id);
