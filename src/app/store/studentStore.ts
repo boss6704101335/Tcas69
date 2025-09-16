@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+
 
 export type Student = {
   id: number;
@@ -18,7 +18,7 @@ export type Student = {
 };
 
 // store ตัวกลาง
-let studentStore: Student[] = [];
+const studentStore: Student[] = [];
 
 // ฟังก์ชันสำหรับจัดการ store
 export const addStudent = (student: Student) => {
