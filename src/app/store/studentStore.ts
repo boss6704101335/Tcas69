@@ -30,3 +30,19 @@ export const getStudents = () => studentStore;
 // ดึงนักเรียนตาม id
 export const getStudentById = (id: number) =>
   studentStore.find((s) => s.id === id);
+
+// อัปเดตนักเรียน
+export const updateStudent = (id: number, data: Omit<Student, "id">) => {
+  const index = studentStore.findIndex((s) => s.id === id);
+  if (index !== -1) {
+    studentStore[index] = { ...data, id };
+  }
+};
+
+// ลบนักเรียน
+export const deleteStudent = (id: number) => {
+  const index = studentStore.findIndex((s) => s.id === id);
+  if (index !== -1) {
+    studentStore.splice(index, 1);
+  }
+};
